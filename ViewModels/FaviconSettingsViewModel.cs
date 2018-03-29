@@ -1,10 +1,31 @@
-﻿using System.Collections.Generic;
-using Orchard.Environment.Extensions;
+﻿#region Using
+using System.Collections.Generic;
+using Vandelay.Industries.Models;
+using Vandelay.Industries.Services;
+#endregion
 
 namespace Vandelay.Industries.ViewModels {
-    [OrchardFeature("Vandelay.Favicon")]
     public class FaviconSettingsViewModel {
-        public string FaviconUrl { get; set; }
-        public IEnumerable<string> FaviconUrlSuggestions { get; set; }
+        public FaviconSettingsViewModel() {
+            RelSuggestions = new List<string> {
+                "shortcut icon",
+                "icon",
+                "apple-touch-icon",
+                "apple-touch-icon-precomposed"
+            };
+            TypeSuggestions = new List<string> {
+                "image/x-icon",
+                "image/png",
+                "image/gif",
+                "image/png"
+            };
+        }
+
+        #region Properties
+        public IList<SingleFavicon> FaviconUrl { get; set; }
+        public IList<FaviconUrlDetail> FaviconUrlSuggestions { get; set; }
+        public IList<string> RelSuggestions { get; }
+        public IList<string> TypeSuggestions { get; }
+        #endregion
     }
 }

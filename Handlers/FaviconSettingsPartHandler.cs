@@ -1,12 +1,12 @@
+#region Using
 using Orchard.ContentManagement;
-using Orchard.Data;
 using Orchard.ContentManagement.Handlers;
-using Orchard.Environment.Extensions;
+using Orchard.Data;
 using Orchard.Localization;
 using Vandelay.Industries.Models;
+#endregion
 
 namespace Vandelay.Industries.Handlers {
-    [OrchardFeature("Vandelay.Favicon")]
     public class FaviconSettingsPartHandler : ContentHandler {
         public FaviconSettingsPartHandler(IRepository<FaviconSettingsPartRecord> repository) {
             T = NullLocalizer.Instance;
@@ -14,13 +14,20 @@ namespace Vandelay.Industries.Handlers {
             Filters.Add(new ActivatingFilter<FaviconSettingsPart>("Site"));
         }
 
+        #region Properties
         public Localizer T { get; set; }
+        #endregion
 
+        #region Methods
         protected override void GetItemMetadata(GetContentItemMetadataContext context) {
-            if (context.ContentItem.ContentType != "Site")
+            if (context.ContentItem.ContentType != "Site") {
                 return;
+            }
             base.GetItemMetadata(context);
-            context.Metadata.EditorGroupInfo.Add(new GroupInfo(T("Favicon")));
+            context.Metadata.EditorGroupInfo.Add(new GroupInfo(T(Constants.AdminMenuName)) {
+                Position = "1"
+            });
         }
+        #endregion
     }
 }

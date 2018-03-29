@@ -1,29 +1,99 @@
-﻿@using Vandelay.Industries.ViewModels;
-@model FaviconSettingsViewModel
+﻿@model Vandelay.Industries.ViewModels.FaviconSettingsViewModel
+@{
+    var items = Model.FaviconUrl;
+}
+<script type="text/javascript">
+    function selectNewIcon(baseId, iconPath, el) {
+        document.getElementById(baseId).value = iconPath;
+        document.getElementById(baseId + '-fileName').innerText = iconPath;
+        document.getElementById(baseId + '-icon').src = el.firstElementChild.src;
+    }
 
-<fieldset>
+    function clearIcon(baseId) {
+        document.getElementById(baseId).value = "";
+        document.getElementById(baseId + '-fileName').innerText = "Please pick an icon";
+        document.getElementById(baseId + '-icon').src = "";
+    }
+</script>
+<fieldset class="settings">
     <legend>@T("Favicon")</legend>
     <div>
-        <label for="FaviconUrl">@T("Favicon URL")</label>
-        @Html.TextBoxFor(m => m.FaviconUrl, new { @class = "textMedium" })
-        @if (!String.IsNullOrWhiteSpace(Model.FaviconUrl)) {
-            <img src="@Model.FaviconUrl" alt="The current favicon" />
-        }
-        @Html.ValidationMessage("FaviconUrl", "*")
-        @if (Model.FaviconUrlSuggestions != null &&
-            Model.FaviconUrlSuggestions.Any()) {
-            <label>Suggestions:</label>
-            <ul>
-            @foreach (var suggestion in Model.FaviconUrlSuggestions) {
-                <li style="float:left;margin:3px"
-                    onclick="document.getElementById('@Html.FieldIdFor(m => m.FaviconUrl)').value='@suggestion'">
-                    <img src="@suggestion" alt="@suggestion"/>
-                </li>
+        <table class="items">
+            <thead>
+            <tr>
+                <th>Rel</th>
+                <th>Type</th>
+                <th>Url</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @for (var xi = 0; xi < items.Count; xi++) {
+                var item = items[xi];
+                var i = xi;
+                <tr>
+                    <td>
+                        @Html.TextBoxFor(m => m.FaviconUrl[i].Relation, new Dictionary<string, object> {
+                            {"list", "RelSuggestions"}
+                        })
+                        @if (Model.RelSuggestions.Any()) {
+                            <datalist id="RelSuggestions">
+                                @foreach (var relSuggestion in Model.RelSuggestions) {
+                                    <option value="@relSuggestion"/>
+                                }
+                            </datalist>
+                        }
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.FaviconUrl[i].LinkType, new Dictionary<string, object> {
+                            {"list", "TypeSuggestions"}
+                        })
+                        @if (Model.TypeSuggestions.Any()) {
+                            <datalist id="TypeSuggestions">
+                                @foreach (var typeSuggestion in Model.TypeSuggestions) {
+                                    <option value="@typeSuggestion"/>
+                                }
+                            </datalist>
+                        }
+                    </td>
+                    <td>
+                        @{ var iconUrl = string.IsNullOrWhiteSpace(item.Url)
+                               ? "Please pick an icon"
+                               : item.Url; }
+                        @if (!string.IsNullOrWhiteSpace(item.Url)) {
+                            <div style="display: inline-block;">
+                                <img id="@Html.FieldIdFor(m => m.FaviconUrl[i].Url)-icon" src="@Display.ResizeMediaUrl(Path: item.GetPublicUrl(), Width: 40)"
+                                     alt="The current favicon"
+                                     class="thumbnail"/>
+                            </div>
+                        }
+                        <span style="font-weight: bold" id="@Html.FieldIdFor(m => m.FaviconUrl[i].Url)-fileName">@iconUrl</span>
+                        @Html.HiddenFor(m => m.FaviconUrl[i].Url)
+                        @Html.ValidationMessage("FaviconUrl", "*")
+                        <a href="javascript:clearIcon('@Html.FieldIdFor(m => m.FaviconUrl[i].Url)')">Clear Icon</a>
+                    </td>
+                    <td>
+                        @if (Model.FaviconUrlSuggestions != null &&
+                             Model.FaviconUrlSuggestions.Any()) {
+                            <ul>
+                                @foreach (var suggestion in Model.FaviconUrlSuggestions) {
+                                    <li style="float: left; margin: 3px" title="@suggestion.FileName"
+                                        onclick="selectNewIcon('@Html.FieldIdFor(m => m.FaviconUrl[i].Url)', '@suggestion.FileName', this)">
+                                        <img src="@Display.ResizeMediaUrl(Path: suggestion.PublicUrl, Width: 40)"
+                                             alt="@suggestion.FileName"
+                                             class="thumbnail"/>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else {
+                            <span class="hint">@T("Upload favicon files into a favicon folder in the Media module.")</span>
+                        }
+                    </td>
+
+                </tr>
             }
-            </ul>
-        }
-        else {
-            <span class="hint">@T("Upload favicon files into a favicon folder in the Media module.")</span>
-        }
+            </tbody>
+        </table>
     </div>
 </fieldset>

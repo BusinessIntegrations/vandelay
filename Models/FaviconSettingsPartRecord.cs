@@ -1,9 +1,11 @@
+#region Using
 using Orchard.ContentManagement.Records;
-using Orchard.Environment.Extensions;
+#endregion
 
 namespace Vandelay.Industries.Models {
-    [OrchardFeature("Vandelay.Favicon")]
     public class FaviconSettingsPartRecord : ContentPartRecord {
+        #region Properties
         public virtual string FaviconUrl { get; set; }
+        #endregion
     }
 }

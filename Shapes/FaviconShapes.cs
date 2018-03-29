@@ -1,46 +1,56 @@
-﻿using System.Linq;
+﻿#region Using
+using System.Linq;
 using Orchard;
 using Orchard.DisplayManagement.Descriptors;
-using Orchard.Environment.Extensions;
 using Orchard.UI.Resources;
 using Vandelay.Industries.Services;
+#endregion
 
 namespace Vandelay.Industries.Shapes {
-    [OrchardFeature("Vandelay.Favicon")]
     public class FaviconShapes : IShapeTableProvider {
-        private readonly IWorkContextAccessor _wca;
         private readonly IFaviconService _faviconService;
+        private readonly IWorkContextAccessor _wca;
 
         public FaviconShapes(IWorkContextAccessor wca, IFaviconService faviconService) {
             _wca = wca;
             _faviconService = faviconService;
         }
 
+        #region IShapeTableProvider Members
         public void Discover(ShapeTableBuilder builder) {
             builder.Describe("HeadLinks")
                 .OnDisplaying(shapeDisplayingContext => {
-                    string faviconUrl = _faviconService.GetFaviconUrl();
-                    if (!string.IsNullOrWhiteSpace(faviconUrl)) {
-                        // Get the current favicon from head
-                        var resourceManager = _wca.GetContext().Resolve<IResourceManager>();
-                        var links = resourceManager.GetRegisteredLinks();
-                        var currentFavicon = links
-                            .Where(l => l.Rel == "shortcut icon" && l.Type == "image/x-icon")
-                            .FirstOrDefault();
-                        // Modify if found
-                        if (currentFavicon != default(LinkEntry)) {
-                            currentFavicon.Href = faviconUrl;
-                        }
-                        else {
-                            // Add the new one
-                            resourceManager.RegisterLink(new LinkEntry {
-                                Type = "image/x-icon",
-                                Rel = "shortcut icon",
-                                Href = faviconUrl
-                            });
+                    var faviconList = _faviconService.GetFaviconList();
+                    // Get the current favicon from head
+                    var resourceManager = _wca.GetContext()
+                        .Resolve<IResourceManager>();
+                    var currentLinks = resourceManager.GetRegisteredLinks()
+                        .ToList();
+                    foreach (var favicon in faviconList) {
+                        if (favicon != null &&
+                            favicon.IsValid()) {
+                            var favicon1 = favicon;
+                            var findIndex = currentLinks.FindIndex(l => l.Rel == favicon1.Relation && l.Type == favicon1.LinkType);
+                            var href = _faviconService.ResolveFavicon(favicon.Url);
+                            // Modify if found
+                            if (findIndex >= 0) {
+                                currentLinks[findIndex]
+                                    .Href = href;
+                                //now remove this link from our temporary list as we don't want to inadvertently overwrite it again.
+                                currentLinks.RemoveAt(findIndex);
+                            }
+                            else {
+                                // Add the new one
+                                resourceManager.RegisterLink(new LinkEntry {
+                                    Type = favicon.LinkType,
+                                    Rel = favicon.Relation,
+                                    Href = href
+                                });
+                            }
                         }
                     }
                 });
         }
+        #endregion
     }
 }

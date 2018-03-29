@@ -26,6 +26,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,7 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\..\OrchardBasicCorrectness.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -49,183 +50,65 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fluent.IO, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\FluentPath.1.2.1\lib\net4\Fluent.IO.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Fluent.Zip, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\FluentPathZip.1.2.1\lib\net4\Fluent.Zip.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Unofficial.Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\admin-custom-sort.min.js.map">
-      <DependentUpon>admin-custom-sort.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\admin-custom-sort.js" />
-    <Content Include="Scripts\admin-custom-sort.min.js">
-      <DependentUpon>admin-custom-sort.js</DependentUpon>
-    </Content>
-    <Content Include="Styles\admin-custom-sort.css">
-      <DependentUpon>admin-custom-sort.less</DependentUpon>
-    </Content>
-    <Content Include="Styles\admin-custom-sort.min.css">
-      <DependentUpon>admin-custom-sort.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\UserStorageAdmin.css" />
     <Content Include="Vandelay.gif" />
     <Content Include="Properties\AssemblyInfo.cs" />
     <Content Include="Module.txt" />
-    <Content Include="Views\CustomSortAdmin.Index.cshtml" />
-    <Content Include="Views\CustomSortAdmin.Create.cshtml" />
-    <Content Include="Views\CustomSortAdmin.Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
       <Project>{2d1d92bb-4555-4cbe-8d0e-63563d6ce4c6}</Project>
       <Name>Orchard.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\Orchard.Core.csproj">
-      <Project>{9916839c-39fc-4ceb-a5af-89ca7e87119f}</Project>
-      <Name>Orchard.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orchard.Autoroute\Orchard.Autoroute.csproj">
-      <Project>{66fccd76-2761-47e3-8d11-b45d0001ddaa}</Project>
-      <Name>Orchard.Autoroute</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orchard.MediaLibrary\Orchard.MediaLibrary.csproj">
+    <ProjectReference Include="..\..\Modules\Orchard.MediaLibrary\Orchard.MediaLibrary.csproj">
       <Project>{73a7688a-5bd3-4f7e-adfa-ce36c5a10e3b}</Project>
       <Name>Orchard.MediaLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Orchard.Projections\Orchard.Projections.csproj">
-      <Project>{5531e894-d259-45a3-aa61-26dbe720c1ce}</Project>
-      <Name>Orchard.Projections</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orchard.Tags\Orchard.Tags.csproj">
-      <Project>{5D0F00F0-26C9-4785-AD61-B85710C60EB0}</Project>
-      <Name>Orchard.Tags</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orchard.Themes\Orchard.Themes.csproj">
-      <Project>{CDE24A24-01D3-403C-84B9-37722E18DFB7}</Project>
-      <Name>Orchard.Themes</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\SplashScreenController.cs" />
-    <Compile Include="Controllers\CustomSortAdminController.cs" />
-    <Compile Include="Controllers\UserStorageController.cs" />
-    <Compile Include="Drivers\SplashScreenSettingsPartDriver.cs" />
-    <Compile Include="Filters\SplashScreenFilter.cs" />
-    <Compile Include="Handlers\SplashScreenSettingsPartHandler.cs" />
-    <Compile Include="Menus\CustomSortAdminMenu.cs" />
-    <Compile Include="Menus\ContentAdminMenu.cs" />
-    <Compile Include="Menus\UserStorageAdminMenu.cs" />
-    <Compile Include="Menus\ThemePickerAdminMenu.cs" />
-    <Compile Include="Commands\LocalizationManagementCommands.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\SessionThemeController.cs" />
-    <Compile Include="Migrations\CustomSortMigrations.cs" />
-    <Compile Include="Migrations\ClassyMigrations.cs" />
-    <Compile Include="Drivers\RemoteRssPartDriver.cs" />
-    <Compile Include="Filters\RelativeUrlHtmlFilter.cs" />
-    <Compile Include="Handlers\RemoteRssPartHandler.cs" />
-    <Compile Include="Models\CustomSortOrderRecord.cs" />
-    <Compile Include="Models\CustomSortRecord.cs" />
-    <Compile Include="Models\RemoteRssPart.cs" />
-    <Compile Include="Models\SplashScreenSettingsPart.cs" />
-    <Compile Include="Models\UserStorageRecord.cs" />
-    <Compile Include="Permissions\UserStoragePermissions.cs" />
-    <Compile Include="Migrations\RemoteRssMigrations.cs" />
-    <Compile Include="Providers\SortCriteria\CustomSortCriteria.cs" />
-    <Compile Include="Routes\SplashScreenRoutes.cs" />
-    <Compile Include="Services\CustomSortService.cs" />
-    <Compile Include="Services\RemoteRssService.cs" />
-    <Compile Include="Services\UserStorageService.cs" />
-    <Compile Include="Settings\CustomCssSettings.cs" />
-    <Compile Include="Migrations\ThemePickerMigrations.cs" />
-    <Compile Include="Migrations\FaviconMigrations.cs" />
-    <Compile Include="Drivers\CustomCssDriver.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Migrations.cs" />
     <Compile Include="Drivers\FaviconSettingsPartDriver.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Drivers\MetaDriver.cs" />
-    <Compile Include="Handlers\CustomCssHandler.cs" />
     <Compile Include="Handlers\FaviconSettingsPartHandler.cs" />
-    <Compile Include="Handlers\MetaHandler.cs" />
-    <Compile Include="Migrations\MetaMigrations.cs" />
-    <Compile Include="Models\CustomCss.cs" />
-    <Compile Include="Models\CustomCssRecord.cs" />
     <Compile Include="Models\FaviconSettingsPart.cs" />
     <Compile Include="Models\FaviconSettingsPartRecord.cs" />
-    <Compile Include="Models\MetaPart.cs" />
-    <Compile Include="Models\ThemePickerSettingsRecord.cs" />
-    <Compile Include="Models\StringEntry.cs" />
+    <Compile Include="Models\SingleFavicon.cs" />
+    <Compile Include="Services\FaviconUrlDetail.cs" />
     <Compile Include="Services\FaviconService.cs" />
-    <Compile Include="Services\IThemeSelectionRule.cs" />
-    <Compile Include="Services\LocalizationManagementService.cs" />
-    <Compile Include="Services\SettingsService.cs" />
-    <Compile Include="Services\ThemePickerThemeSelector.cs" />
-    <Compile Include="Services\UserAgentThemeSelectionRule.cs" />
+    <Compile Include="Services\IFaviconService.cs" />
     <Compile Include="Shapes\FaviconShapes.cs" />
-    <Compile Include="Migrations\UserStorageMigrations.cs" />
     <Compile Include="ViewModels\FaviconSettingsViewModel.cs" />
-    <Compile Include="ViewModels\SplashScreenViewModel.cs" />
-    <Compile Include="ViewModels\ThemePickerIndexViewModel.cs" />
-    <Compile Include="ViewModels\UserStorageAdminViewModel.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\EditorTemplates\Parts\RemoteRss.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\EditorTemplates\Parts\CustomCss.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Placement.info">
@@ -236,42 +119,27 @@
     <Content Include="Views\EditorTemplates\Parts\Favicon.FaviconSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\EditorTemplates\Parts\Meta.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Admin\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Vandelay.ThemePicker.LinkToDefault.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Parts\RemoteRss.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\UserStorage\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Styles\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\EditorTemplates\Parts\SplashScreenSettings.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\SplashScreen\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\DefinitionTemplates\CustomCssSettings.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Styles\admin-custom-sort.less" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <Content Include="Views\Web.config" />
     <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
