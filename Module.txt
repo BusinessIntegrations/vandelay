@@ -2,7 +2,7 @@ Name: BI Favicons
 AntiForgery: enabled
 Author: Bertrand Le Roy
 Website: https://github.com/BusinessIntegrations/vandelay
-Version: 2.0.199
+Version: 2.0.252
 OrchardVersion: 1.10.2
 Tags: Favicon
 Description: Adds a favicon setting to site settings. Modified by Business Integrations Ltd - All other original features have been removed.

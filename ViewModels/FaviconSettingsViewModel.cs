@@ -5,7 +5,7 @@ using Vandelay.Industries.Services;
 #endregion
 
 namespace Vandelay.Industries.ViewModels {
-    public class FaviconSettingsViewModel {
+    public class FaviconSettingsViewModel : IFaviconSettingsPart {
         public FaviconSettingsViewModel() {
             RelSuggestions = new List<string> {
                 "shortcut icon",
@@ -21,8 +21,11 @@ namespace Vandelay.Industries.ViewModels {
             };
         }
 
+        #region IFaviconSettingsPart Members
+        public IList<SingleFavicon> FaviconUrlList { get; set; }
+        #endregion
+
         #region Properties
-        public IList<SingleFavicon> FaviconUrl { get; set; }
         public IList<FaviconUrlDetail> FaviconUrlSuggestions { get; set; }
         public IList<string> RelSuggestions { get; }
         public IList<string> TypeSuggestions { get; }

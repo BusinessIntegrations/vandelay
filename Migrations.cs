@@ -1,25 +1,21 @@
 #region Using
 using System.Data;
 using Orchard.Data.Migration;
-using Vandelay.Industries.Models;
 #endregion
 
 namespace Vandelay.Industries {
     public class Migrations : DataMigrationImpl {
-        private const string ColumnName = nameof(FaviconSettingsPartRecord.FaviconUrl);
-        private const string FaviconSettingsPartRecordName = nameof(FaviconSettingsPartRecord);
-
         #region Methods
         public int Create() {
-            SchemaBuilder.CreateTable(FaviconSettingsPartRecordName,
+            SchemaBuilder.CreateTable(Constants.FaviconSettingsPartRecordName,
                 table => table.ContentPartRecord()
-                    .Column<string>(ColumnName));
+                    .Column<string>(Constants.ColumnName));
             return 1;
         }
 
         public int UpdateFrom1() {
-            SchemaBuilder.AlterTable(FaviconSettingsPartRecordName,
-                command => command.AlterColumn(ColumnName,
+            SchemaBuilder.AlterTable(Constants.FaviconSettingsPartRecordName,
+                command => command.AlterColumn(Constants.ColumnName,
                     columnCommand => columnCommand.WithType(DbType.String)
                         .Unlimited()));
             return 2;

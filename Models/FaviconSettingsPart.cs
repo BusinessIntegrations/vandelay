@@ -7,13 +7,13 @@ using Orchard.Services;
 #endregion
 
 namespace Vandelay.Industries.Models {
-    public class FaviconSettingsPart : ContentPart<FaviconSettingsPartRecord> {
+    public class FaviconSettingsPart : ContentPart<FaviconSettingsPartRecord>, IFaviconSettingsPart {
+        #region IFaviconSettingsPart Members
+        public IList<SingleFavicon> FaviconUrlList { get => Deserialize(FaviconUrl); set => FaviconUrl = Serialize(value); }
+        #endregion
+
         #region Properties
-        public IList<SingleFavicon> FaviconUrl
-        {
-            get { return Deserialize(Retrieve(r => r.FaviconUrl)); }
-            set { Store(r => r.FaviconUrl, Serialize(value)); }
-        }
+        public string FaviconUrl { get { return Retrieve(r => r.FaviconUrl); } set { Store(r => r.FaviconUrl, value); } }
         #endregion
 
         #region Methods
@@ -26,6 +26,7 @@ namespace Vandelay.Industries.Models {
             catch (Exception) {
                 list = new List<SingleFavicon>();
             }
+
             list.Add(new SingleFavicon());
             return list;
         }

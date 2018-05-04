@@ -8,19 +8,22 @@ using Vandelay.Industries.Services;
 
 namespace Vandelay.Industries.Shapes {
     public class FaviconShapes : IShapeTableProvider {
+        private readonly ICacheService _cacheService;
         private readonly IFaviconService _faviconService;
         private readonly IWorkContextAccessor _wca;
 
-        public FaviconShapes(IWorkContextAccessor wca, IFaviconService faviconService) {
+        public FaviconShapes(IWorkContextAccessor wca, IFaviconService faviconService, ICacheService cacheService) {
             _wca = wca;
             _faviconService = faviconService;
+            _cacheService = cacheService;
         }
 
         #region IShapeTableProvider Members
         public void Discover(ShapeTableBuilder builder) {
             builder.Describe("HeadLinks")
                 .OnDisplaying(shapeDisplayingContext => {
-                    var faviconList = _faviconService.GetFaviconList();
+                    var faviconList = _cacheService.GetData()
+                        .SettingsPartFaviconUrl;
                     // Get the current favicon from head
                     var resourceManager = _wca.GetContext()
                         .Resolve<IResourceManager>();
@@ -31,7 +34,8 @@ namespace Vandelay.Industries.Shapes {
                             favicon.IsValid()) {
                             var favicon1 = favicon;
                             var findIndex = currentLinks.FindIndex(l => l.Rel == favicon1.Relation && l.Type == favicon1.LinkType);
-                            var href = _faviconService.ResolveFavicon(favicon.Url);
+                            var href = _faviconService.ResolveFavicon(favicon)
+                                .GetPublicUrl();
                             // Modify if found
                             if (findIndex >= 0) {
                                 currentLinks[findIndex]

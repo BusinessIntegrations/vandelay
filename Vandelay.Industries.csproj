@@ -95,28 +95,28 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminMenu.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Migrations.cs" />
-    <Compile Include="Drivers\FaviconSettingsPartDriver.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Handlers\FaviconSettingsPartHandler.cs" />
     <Compile Include="Models\FaviconSettingsPart.cs" />
     <Compile Include="Models\FaviconSettingsPartRecord.cs" />
+    <Compile Include="Models\IFaviconSettingsPart.cs" />
     <Compile Include="Models\SingleFavicon.cs" />
+    <Compile Include="Permissions.cs" />
+    <Compile Include="Services\CacheModel.cs" />
+    <Compile Include="Services\CacheService.cs" />
     <Compile Include="Services\FaviconUrlDetail.cs" />
     <Compile Include="Services\FaviconService.cs" />
+    <Compile Include="Services\ICacheModel.cs" />
+    <Compile Include="Services\ICacheService.cs" />
     <Compile Include="Services\IFaviconService.cs" />
     <Compile Include="Shapes\FaviconShapes.cs" />
     <Compile Include="ViewModels\FaviconSettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Placement.info">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\EditorTemplates\Parts\Favicon.FaviconSettings.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Styles\Web.config" />
@@ -141,6 +141,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
